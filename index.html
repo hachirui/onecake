@@ -613,11 +613,18 @@
     });
   }
 
-  // Re-render on resize
+  // Re-render only if column count changes
+  let lastCols = getColCount();
   let resizeDebounce;
   window.addEventListener('resize', () => {
     clearTimeout(resizeDebounce);
-    resizeDebounce = setTimeout(() => renderGallery(0), 200);
+    resizeDebounce = setTimeout(() => {
+      const cols = getColCount();
+      if (cols !== lastCols) {
+        lastCols = cols;
+        renderGallery(0);
+      }
+    }, 300);
   });
 
   function loadMore() {

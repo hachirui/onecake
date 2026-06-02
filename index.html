@@ -419,36 +419,48 @@
     .contact-info { grid-template-columns: 1fr; }
   }
 
-  /* ===== WECHAT — force mobile layout ===== */
-  .wechat nav { display: none; }
-  .wechat .cursor { display: none; }
-  .wechat * { cursor: auto; }
-  .wechat header { padding: 12px 20px; }
-  .wechat .hero { padding: 100px 20px 60px; min-height: 100vh; }
-  .wechat .hero h1 { font-size: 2.2rem; }
-  .wechat .hero .sub { font-size: 0.9rem; max-width: 320px; }
-  .wechat .hero .decorative { font-size: 0.7rem; letter-spacing: 2px; }
-  .wechat .hero-logo { width: 140px; height: 140px; }
-  .wechat .hero-btns { flex-direction: column; align-items: center; }
-  .wechat .hero-btns .btn { margin: 6px 0; width: 220px; text-align: center; }
-  .wechat .btn { width: 220px; text-align: center; }
-  .wechat .hero-watermark { display: none; }
-  .wechat .hero-bunny { display: none; }
-  .wechat .hero-float { display: none; }
-  .wechat section { padding: 56px 16px; }
-  .wechat .sec-head { margin-bottom: 36px; }
-  .wechat .load-more-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-  .wechat .load-more-btn { margin-left: 0 !important; width: 200px; }
-  .wechat .lightbox-inner { flex-wrap: wrap; justify-content: center; gap: 8px; }
-  .wechat .lb-arrow { width: 36px; height: 36px; font-size: 1rem; }
-  .wechat .lightbox-inner img { max-width: 95vw; }
-  .wechat .scroll-top { bottom: 16px; right: 16px; width: 38px; height: 38px; }
-  .wechat footer { padding: 20px 16px; font-size: 0.75rem; }
-  .wechat .contact-info { grid-template-columns: 1fr; }
-  .wechat .masonry { gap: 10px; }
-  .wechat .hero-content { max-width: 100%; }
-  .wechat .hero .scroll-indicator { bottom: 16px; }
-  .wechat .social-row { flex-wrap: wrap; justify-content: center; gap: 8px; }
+  /* ===== WECHAT — force mobile-like layout ===== */
+  html.wechat {
+    background: #e8ddd0;
+  }
+  html.wechat body {
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 0 60px rgba(0,0,0,0.12);
+    min-height: 100vh;
+  }
+  /* Fixed elements: center within the 500px container */
+  html.wechat header {
+    max-width: 500px;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+  }
+  html.wechat .pattern-bg {
+    max-width: 500px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  html.wechat .scroll-top {
+    right: calc((100vw - 500px)/2 + 16px);
+  }
+  html.wechat .cursor { display: none; }
+  html.wechat * { cursor: auto; }
+  /* Mobile-like overrides (500px container = slightly larger than iPhone) */
+  html.wechat nav { display: none; }
+  html.wechat .hero { padding: 100px 24px 60px; min-height: 100vh; }
+  html.wechat .hero-logo { width: 180px; height: 180px; }
+  html.wechat .hero h1 { font-size: 2.6rem; }
+  html.wechat .hero .sub { font-size: 0.95rem; max-width: 380px; }
+  html.wechat .hero-watermark { display: none; }
+  html.wechat .hero-bunny { display: none; }
+  html.wechat .hero-float { display: none; }
+  html.wechat .hero-btns { flex-direction: column; align-items: center; }
+  html.wechat .hero-btns .btn { margin: 6px 0; width: 240px; text-align: center; }
+  html.wechat .btn { width: 240px; text-align: center; }
+  html.wechat section { padding: 56px 20px; }
+  html.wechat .contact-info { grid-template-columns: 1fr; }
+  html.wechat footer { padding: 20px; font-size: 0.78rem; }
 </style>
 </head>
 <body>

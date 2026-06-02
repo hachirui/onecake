@@ -60,7 +60,6 @@
     display: flex; align-items: center; justify-content: space-between;
     text-align: left; flex-direction: row;
     border-bottom: 1px solid rgba(180, 140, 80, 0.15);
-    contain: layout style;
   }
   .logo { display: flex; align-items: center; gap: 12px; }
   .logo img { height: 40px; width: 40px; border-radius: 8px; object-fit: cover; }
@@ -431,15 +430,18 @@
   }
   /* Fixed elements: center within the 500px container */
   html.wechat header {
+    width: 100%;
     max-width: 500px;
-    left: 50%;
-    transform: translateX(-50%);
-    right: auto;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
   }
   html.wechat .pattern-bg {
+    width: 100%;
     max-width: 500px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
   }
   html.wechat .scroll-top {
     right: calc((100vw - 500px)/2 + 16px);

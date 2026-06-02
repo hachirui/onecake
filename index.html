@@ -51,11 +51,14 @@
   /* ===== HEADER ===== */
   header {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 16px 32px;
-    background: rgba(253, 248, 240, 0.9);
+    padding: 16px 32px; min-height: 72px;
+    background: rgba(253, 248, 240, 0.92);
+    -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     display: flex; align-items: center; justify-content: space-between;
+    text-align: left; flex-direction: row;
     border-bottom: 1px solid rgba(180, 140, 80, 0.15);
+    contain: layout style;
   }
   .logo { display: flex; align-items: center; gap: 12px; }
   .logo img { height: 40px; width: 40px; border-radius: 8px; object-fit: cover; }

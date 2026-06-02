@@ -247,8 +247,9 @@
     border-radius: 10px; overflow: hidden;
     opacity: 0; transform: translateY(24px);
     transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s;
-    cursor: pointer;
+    cursor: pointer; min-height: 100px; background: var(--paper-dark);
   }
+  .masonry-card.img-ready { min-height: 0; }
   .masonry-card.visible { opacity: 1; transform: translateY(0); }
   .masonry-card:hover { box-shadow: 0 10px 32px rgba(0,0,0,0.12); }
   .masonry-card img {
@@ -553,7 +554,16 @@
     const card = document.createElement('div');
     card.className = 'masonry-card';
     card.dataset.id = it.id;
-    card.innerHTML = `<img src="${it.img}" alt="${it.name}" loading="lazy">`;
+    const img = document.createElement('img');
+    img.src = it.img;
+    img.alt = it.name;
+    img.loading = 'lazy';
+    // Prevent layout shift: make card visible only after image loads
+    img.onload = () => card.classList.add('img-ready');
+    img.onerror = () => card.classList.add('img-ready');
+    // If image is cached, onload might fire before append
+    if (img.complete) card.classList.add('img-ready');
+    card.appendChild(img);
     card.addEventListener('click', e => {
       e.stopPropagation();
       openLB(it.id);
@@ -607,9 +617,19 @@
   }
 
   function revealNewOnly() {
-    const cards = document.querySelectorAll('.masonry-card:not(.visible)');
+    const cards = document.querySelectorAll('.masonry-card:not(.visible).img-ready');
     cards.forEach((card, i) => {
-      setTimeout(() => card.classList.add('visible'), i * 30);
+      setTimeout(() => card.classList.add('visible'), i * 40);
+    });
+    // Also reveal any still-loading images once they load
+    const loading = document.querySelectorAll('.masonry-card:not(.visible):not(.img-ready)');
+    loading.forEach(card => {
+      const img = card.querySelector('img');
+      if (img) {
+        const reveal = () => { card.classList.add('visible'); };
+        img.addEventListener('load', reveal);
+        img.addEventListener('error', reveal);
+      }
     });
   }
 
@@ -643,12 +663,12 @@
 
   // ===== SCROLL REVEAL =====
   function revealCards() {
-    const cards = document.querySelectorAll('.masonry-card:not(.visible)');
+    const cards = document.querySelectorAll('.masonry-card:not(.visible).img-ready');
     const winH = window.innerHeight;
     cards.forEach((card, i) => {
       const top = card.getBoundingClientRect().top;
       if (top < winH - 40) {
-        setTimeout(() => card.classList.add('visible'), i * 30);
+        setTimeout(() => card.classList.add('visible'), i * 40);
       }
     });
   }

@@ -129,8 +129,8 @@
     animation: driftSlow 12s ease-in-out infinite;
     opacity: 0.07;
   }
-  .hero-bunny.b1 { top: 18%; right: 12%; animation-delay: -4s; width: clamp(80px, 14vw, 150px); }
-  .hero-bunny.b2 { bottom: 22%; left: 10%; animation-delay: -8s; width: clamp(60px, 10vw, 110px); }
+  .hero-bunny.b1 { top: 15%; right: 10%; animation-delay: -4s; width: clamp(70px, 12vw, 130px); }
+  .hero-bunny.b2 { top: 45%; left: 6%; animation-delay: -8s; width: clamp(50px, 8vw, 90px); }
   .hero-bunny img { width: 100%; height: auto; display: block; }
   @keyframes drift {
     0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -275,6 +275,14 @@
     font-size: 16rem; color: rgba(255,255,255,0.015); font-weight: 900;
     pointer-events: none; z-index: 0;
   }
+  .contact-bunny {
+    position: absolute; pointer-events: none; z-index: 0;
+    opacity: 0.04; width: clamp(100px, 20vw, 200px);
+    animation: driftSlow 14s ease-in-out infinite;
+  }
+  .contact-bunny.cb1 { bottom: 10%; left: 5%; animation-delay: 0s; }
+  .contact-bunny.cb2 { top: 15%; right: 5%; animation-delay: -7s; }
+  .contact-bunny img { width: 100%; display: block; }
   #contact .sec-head .tag { color: var(--gold); }
   #contact .sec-head h2 { color: var(--paper); }
   #contact .sec-head .line { background: var(--red); }
@@ -397,6 +405,7 @@
     .hero-watermark { display: none; }
     .hero-bunny { display: none; }
     .hero-float { display: none; }
+    .contact-bunny { display: none; }
     section { padding: 56px 16px; }
     .sec-head { margin-bottom: 36px; }
     .load-more-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
@@ -477,6 +486,8 @@
 
 <!-- ===== CONTACT ===== -->
 <section id="contact">
+  <div class="contact-bunny cb1"><img src="bunny.png" alt=""></div>
+  <div class="contact-bunny cb2"><img src="bunny.png" alt=""></div>
   <div class="sec-inner">
     <div class="sec-head">
       <div class="tag">Contatti</div>

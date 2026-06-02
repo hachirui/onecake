@@ -325,6 +325,9 @@
     width: 2px; height: 24px; background: var(--red);
     margin: 0 auto 14px; opacity: 0.6;
   }
+  .orari { text-align: left; display: inline-block; }
+  .orari span { display: block; padding: 2px 0; }
+  .orari em { font-style: normal; color: var(--gold); display: inline-block; width: 36px; font-size: 0.78rem; }
 
   /* ===== SCROLL-TO-TOP ===== */
   .scroll-top {
@@ -492,7 +495,15 @@
       <div class="c-card">
         <div class="c-icon"></div>
         <div class="c-label">Orari</div>
-        <div class="c-value">Lunedì – Domenica<br>10:00 – 22:00</div>
+        <div class="c-value orari">
+          <span><em>Lun</em> Chiuso</span>
+          <span><em>Mar</em> Chiuso</span>
+          <span><em>Mer</em> 10–18:30</span>
+          <span><em>Gio</em> 10–18:30</span>
+          <span><em>Ven</em> 10–18:30</span>
+          <span><em>Sab</em> 10–18:30</span>
+          <span><em>Dom</em> 10–12</span>
+        </div>
       </div>
       <div class="c-card">
         <div class="c-icon"></div>

@@ -511,10 +511,10 @@
     <div class="social-row">
       <a href="https://wa.me/393663734000" target="_blank" rel="noopener" class="soc-btn">WhatsApp</a>
       <a href="https://www.instagram.com/onecake_mestre/" target="_blank" rel="noopener" class="soc-btn">Instagram</a>
-      <button class="soc-btn" onclick="toggleWechat()">WeChat</button>
+      <button class="soc-btn" onclick="toggleWechat()" id="wechatBtn">WeChat</button>
     </div>
     <div class="wechat-popup" id="wechatPopup">
-      WeChat ID: <strong>OneCake_Venezia</strong>
+      <strong>WeChat ID in arrivo</strong>
     </div>
   </div>
 </section>
@@ -795,7 +795,10 @@
   });
 
   function toggleWechat() {
-    document.getElementById('wechatPopup').classList.toggle('show');
+    const popup = document.getElementById('wechatPopup');
+    // Uncomment and replace USERNAME when ready:
+    // window.open('weixin://dlchat?username=USERNAME', '_blank');
+    popup.classList.toggle('show');
   }
 
   renderGallery();

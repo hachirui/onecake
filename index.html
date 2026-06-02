@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
 <title>One caKe — Pasticceria Artigianale Cino-Italiana</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,7 +31,7 @@
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
   }
   .cursor.pointer { transform: translate(-40%, -40%) scale(1.3); }
-  a:hover, button:hover, .gallery-card:hover, .lightbox-close:hover { cursor: none; }
+  a:hover, button:hover, .gallery-card:hover { cursor: none; }
 
   body {
     font-family: 'Georgia', 'Times New Roman', serif;
@@ -165,13 +166,14 @@
     border-bottom: 1px solid var(--gold-light);
   }
 
+  .hero-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
   .btn {
     display: inline-block; padding: 14px 34px; border-radius: 28px;
     text-decoration: none; font-size: 0.95rem; transition: 0.3s;
     border: 1.5px solid var(--red); color: var(--red);
   }
   .btn:hover { background: var(--red); color: #fff; transform: translateY(-2px); }
-  .btn.full { background: var(--red); color: #fff; margin-right: 10px; }
+  .btn.full { background: var(--red); color: #fff; }
   .btn.full:hover { background: var(--red-dark); border-color: var(--red-dark); transform: translateY(-2px); }
 
   /* Scroll indicator */
@@ -314,6 +316,9 @@
   .c-card .c-value {
     color: var(--paper); font-size: 0.92rem; line-height: 1.7;
   }
+  .c-card .c-value a {
+    color: inherit; text-decoration: none;
+  }
   .c-card .c-icon {
     width: 2px; height: 24px; background: var(--red);
     margin: 0 auto 14px; opacity: 0.6;
@@ -358,7 +363,7 @@
   .lightbox-close {
     position: absolute; top: 20px; right: 28px; color: #fff;
     font-size: 2.2rem; background: none; border: none; opacity: 0.6;
-    transition: 0.3s; cursor: none;
+    transition: 0.3s;
   }
   .lightbox-close:hover { opacity: 1; transform: scale(1.15); }
   .lb-arrow {
@@ -378,6 +383,26 @@
     nav { display: none; }
     .cursor { display: none; }
     * { cursor: auto; }
+    header { padding: 12px 20px; }
+    .hero { padding: 100px 20px 60px; }
+    .hero h1 { font-size: 2.2rem; }
+    .hero .sub { font-size: 0.9rem; max-width: 320px; }
+    .hero .decorative { font-size: 0.7rem; letter-spacing: 2px; }
+    .hero-logo { width: 140px; height: 140px; }
+    .hero-btns { flex-direction: column; align-items: center; }
+    .btn { width: 220px; text-align: center; }
+    .hero-watermark { display: none; }
+    .hero-bunny { display: none; }
+    .hero-float { display: none; }
+    section { padding: 56px 16px; }
+    .sec-head { margin-bottom: 36px; }
+    .load-more-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .load-more-btn { margin-left: 0 !important; width: 200px; }
+    .lightbox-inner { flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .lb-arrow { width: 36px; height: 36px; font-size: 1rem; }
+    .lightbox-inner img { max-width: 95vw; }
+    .scroll-top { bottom: 16px; right: 16px; width: 38px; height: 38px; }
+    footer { padding: 20px 16px; font-size: 0.75rem; }
   }
   @media (max-width: 500px) {
     .contact-info { grid-template-columns: 1fr; }
@@ -419,8 +444,10 @@
     <div class="decorative">PASTICCERIA ARTIGIANALE</div>
     <h1>One <strong>caKe</strong></h1>
     <p class="sub">Dove la tradizione dolciaria cinese incontra l'arte pasticcera italiana, nel cuore di Venezia.</p>
-    <a href="#gallery" class="btn full">Scopri le nostre creazioni</a>
-    <a href="#contact" class="btn">Contattaci</a>
+    <div class="hero-btns">
+      <a href="#gallery" class="btn full">Scopri le nostre creazioni</a>
+      <a href="#contact" class="btn">Contattaci</a>
+    </div>
   </div>
   <div class="scroll-indicator">
     <div class="mouse"></div>
@@ -467,7 +494,7 @@
       <div class="c-card">
         <div class="c-icon"></div>
         <div class="c-label">Telefono</div>
-        <div class="c-value">+39 366 373 4000</div>
+        <div class="c-value"><a href="tel:+393663734000">+39 366 373 4000</a></div>
       </div>
     </div>
 
@@ -626,9 +653,9 @@
     loading.forEach(card => {
       const img = card.querySelector('img');
       if (img) {
-        const reveal = () => { card.classList.add('visible'); };
-        img.addEventListener('load', reveal);
-        img.addEventListener('error', reveal);
+        const reveal = () => { card.classList.add('img-ready'); card.classList.add('visible'); };
+        img.addEventListener('load', reveal, { once: true });
+        img.addEventListener('error', reveal, { once: true });
       }
     });
   }

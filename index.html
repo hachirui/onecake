@@ -41,7 +41,9 @@
     color: var(--ink);
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    opacity: 0; transition: opacity 0.2s ease;
   }
+  body.ready { opacity: 1; }
 
   /* ===== PATTERN BACKGROUND ===== */
   .pattern-bg {
@@ -805,6 +807,13 @@
     // window.open('weixin://dlchat?username=USERNAME', '_blank');
     popup.classList.toggle('show');
   }
+
+  // Prevent FOUC/layout shift on slow WebViews (WeChat)
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.body.classList.add('ready');
+    });
+  });
 
   renderGallery();
 </script>
